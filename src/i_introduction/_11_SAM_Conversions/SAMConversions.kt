@@ -3,6 +3,7 @@ package i_introduction._11_SAM_Conversions
 import util.TODO
 import util.doc11
 import java.util.*
+import kotlin.comparisons.compareValues
 
 fun todoTask11(): Nothing = TODO(
     """
@@ -17,6 +18,6 @@ fun todoTask11(): Nothing = TODO(
 
 fun task11(): List<Int> {
     val arrayList = arrayListOf(1, 5, 2)
-    Collections.sort(arrayList, { x, y -> todoTask11() })
+    Collections.sort(arrayList, { x, y -> compareValues(y, x) })
     return arrayList
 }
