@@ -1,7 +1,5 @@
 package ii_collections
 
-import android.util.Log
-
 fun example2(list: List<Int>) {
 
     val isZero: (Int) -> Boolean = { it == 0 }
