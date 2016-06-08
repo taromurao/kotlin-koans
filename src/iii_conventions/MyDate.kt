@@ -22,9 +22,24 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int): Comparabl
         return MyDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
     }
 
+    operator fun plus(interval: TimeInterval): MyDate {
+        return when (interval) {
+            TimeInterval.YEAR -> addTimeIntervals(TimeInterval.YEAR, 1)
+            TimeInterval.WEEK -> addTimeIntervals(TimeInterval.WEEK, 1)
+            TimeInterval.DAY -> addTimeIntervals(TimeInterval.DAY, 1)
+        }
+    }
+
+    operator fun plus(interval: RepeatedTimeInterval): MyDate {
+        return this.addTimeIntervals(interval.interval, interval.repetition)
+    }
 }
 
+class RepeatedTimeInterval(val interval: TimeInterval, val repetition: Int)
+
 enum class TimeInterval { DAY, WEEK, YEAR }
+
+operator fun TimeInterval.times(i: Int) = RepeatedTimeInterval(this, i)
 
 class DateRange(override val start: MyDate, override val endInclusive: MyDate):
         ClosedRange<MyDate>, Iterable<MyDate> {
