@@ -11,9 +11,7 @@ class Invokable {
         return this
     }
 
-    fun getNumberOfInvocations(): Int {
-        return count
-    }
+    fun getNumberOfInvocations(): Int = count
 }
 
 fun todoTask31(): Nothing = TODO(
